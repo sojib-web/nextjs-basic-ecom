@@ -6,19 +6,12 @@ import { FcGoogle } from "react-icons/fc";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-purple-100 px-4">
+    <div className="min-h-screen flex items-center justify-center  px-4">
       {/* Login Card */}
       <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 sm:p-10 text-center">
         {/* Logo */}
         <div className="flex justify-center mb-4">
           <Image src="/logo.svg" alt="MyShop Logo" width={80} height={80} />
-        </div>
-
-        {/* Shop Name */}
-        <div className="flex justify-center mb-6">
-          <h1 className="text-4xl font-bold text-gray-900 tracking-wider">
-            MyShop
-          </h1>
         </div>
 
         {/* Welcome */}

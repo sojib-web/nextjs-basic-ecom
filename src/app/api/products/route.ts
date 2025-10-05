@@ -1,15 +1,43 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "../../../lib/mongodb";
+import clientPromise from "@/lib/mongodb";
 import Product from "@/models/Product";
 
-export async function GET() {
-  await connectDB();
-
+export async function POST(req: Request) {
   try {
-    const products = await Product.find({});
+    const { name, price, description, image } = await req.json();
+
+    const client = await clientPromise;
+    const db = client.db("ecommerceDB");
+
+    const product = await db.collection("products").insertOne({
+      name,
+      price,
+      description,
+      image,
+      createdAt: new Date(),
+    });
+
+    return NextResponse.json({ message: "Product added", product });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Error adding product" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET(req: Request) {
+  try {
+    const client = await clientPromise;
+    const db = client.db("ecommerceDB");
+
+    const products = await db.collection("products").find().toArray();
     return NextResponse.json(products);
   } catch (error) {
-    console.error("Failed to fetch products:", error);
-    return NextResponse.json([], { status: 500 });
+    return NextResponse.json(
+      { message: "Error fetching products" },
+      { status: 500 }
+    );
   }
 }
