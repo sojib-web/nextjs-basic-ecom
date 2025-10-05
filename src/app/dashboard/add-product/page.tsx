@@ -68,14 +68,14 @@ export default function AddProductPage() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen px-4 py-8">
-      {/* Toaster Component */}
+    <div className="flex justify-center items-center min-h-screen px-4 py-8 ">
+      {/* Toaster */}
       <Toaster position="top-right" reverseOrder={false} />
 
-      <div className="bg-white shadow-2xl rounded-3xl w-full max-w-2xl p-10">
+      <div className="bg-white mt-20 shadow-2xl rounded-3xl w-full max-w-2xl p-8 sm:p-10">
         {/* Header */}
         <div className="flex items-center justify-center mb-6">
-          <h1 className="text-4xl font-bold text-gray-800 flex items-center gap-2">
+          <h1 className="text-2xl sm:text-4xl font-bold text-gray-800 flex items-center gap-2">
             🛒 Add New Product
           </h1>
         </div>
@@ -84,7 +84,7 @@ export default function AddProductPage() {
           {/* Image Upload */}
           <div className="flex flex-col items-center">
             {imageUrl && (
-              <div className="mb-4 relative w-48 h-48">
+              <div className="mb-4 relative w-40 h-40 sm:w-48 sm:h-48">
                 <Image
                   src={imageUrl}
                   alt="Product Preview"
@@ -111,7 +111,7 @@ export default function AddProductPage() {
             placeholder="Product Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="border border-gray-300 p-4 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            className="border border-gray-300 p-4 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
             required
           />
 
@@ -121,7 +121,7 @@ export default function AddProductPage() {
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="border border-gray-300 p-4 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            className="border border-gray-300 p-4 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
             required
           />
 
@@ -131,14 +131,14 @@ export default function AddProductPage() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={5}
-            className="border border-gray-300 p-4 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            className="border border-gray-300 p-4 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
           />
 
           {/* Submit Button */}
           <button
             type="submit"
             disabled={uploading}
-            className="w-full bg-green-600 text-white font-semibold py-4 rounded-xl hover:bg-green-700 transition text-lg"
+            className="w-full bg-yellow-500 text-gray-900 font-semibold py-4 rounded-xl hover:bg-yellow-600 transition text-lg"
           >
             {uploading ? "Please wait..." : "Add Product"}
           </button>

@@ -10,10 +10,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-screen flex flex-col">
         <Providers>
           <Navbar />
-          <main>{children}</main>
+
+          {/* Main should take available space */}
+          <main className="flex-1">{children}</main>
+
           <Footer />
         </Providers>
       </body>
