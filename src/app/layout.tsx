@@ -9,15 +9,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
+        {/* ThemeProvider wraps everything that needs theme */}
+
         <Providers>
-          <Navbar />
-
-          {/* Main should take available space */}
-          <main className="flex-1">{children}</main>
-
-          <Footer />
+          <div className="flex-1 bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300 flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>
