@@ -2,6 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 
 export default function LoginPage() {
@@ -56,9 +57,12 @@ export default function LoginPage() {
         {/* Footer */}
         <p className="text-gray-500 mt-4">
           Don&apos;t have an account?{" "}
-          <span className="text-blue-600 font-semibold cursor-pointer hover:underline">
+          <Link
+            href="/signup"
+            className="text-blue-600 font-semibold hover:underline"
+          >
             Sign Up
-          </span>
+          </Link>
         </p>
       </div>
     </div>
