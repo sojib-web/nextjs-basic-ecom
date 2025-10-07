@@ -55,7 +55,7 @@ export default function LoginPage() {
 
         {/* Footer */}
         <p className="text-gray-500 mt-4">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <span className="text-blue-600 font-semibold cursor-pointer hover:underline">
             Sign Up
           </span>
