@@ -7,12 +7,13 @@ export const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID!, // non-null assertion
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!, // non-null assertion
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET!, // non-null assertion
 };
 
 const handler = NextAuth(authOptions);
+
 export { handler as GET, handler as POST };
