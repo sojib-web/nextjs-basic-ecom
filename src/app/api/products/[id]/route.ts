@@ -5,10 +5,11 @@ import { ObjectId } from "mongodb";
 // GET single product by ID
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    // Turbopack expects params to be a Promise, তাই await করে access করতে হবে
+    const { id } = await context.params;
 
     const client = await clientPromise;
     const db = client.db("ecommerceDB");
@@ -17,8 +18,9 @@ export async function GET(
       .collection("products")
       .findOne({ _id: new ObjectId(id) });
 
-    if (!product)
+    if (!product) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
+    }
 
     return NextResponse.json(product);
   } catch (error) {
