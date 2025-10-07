@@ -1,3 +1,4 @@
+// Optional: যদি client-side interactivity লাগে
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,12 +13,10 @@ type Product = {
 
 // ✅ Fetch products from API
 async function getProducts(): Promise<Product[]> {
-  const res = await fetch("http://localhost:3000/api/products", {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch products");
-  }
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
+  const res = await fetch(`${baseUrl}/api/products`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch products");
   return res.json();
 }
 
@@ -26,19 +25,16 @@ export default async function ProductsPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 mt-10 sm:mt-20">
-      {/* Page Title */}
       <h1 className="text-4xl mt-20 sm:text-5xl font-extrabold text-center mb-12 text-gray-800 tracking-tight">
         Our Latest <span className="text-yellow-500">Products</span>
       </h1>
 
-      {/* Responsive Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
         {products.map((p) => (
           <div
             key={p._id}
             className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group"
           >
-            {/* Product Image */}
             <div className="relative w-full h-52 sm:h-56 overflow-hidden">
               <Image
                 src={p.image || "/placeholder.png"}
@@ -49,7 +45,6 @@ export default async function ProductsPage() {
               />
             </div>
 
-            {/* Product Info */}
             <div className="p-5 flex flex-col justify-between h-44">
               <div>
                 <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 truncate">

@@ -1,7 +1,18 @@
 import Image from "next/image";
 
-async function getProduct(id: string) {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`, {
+type Product = {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  image?: string;
+};
+
+// ✅ Fetch single product
+async function getProduct(id: string): Promise<Product> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
+  const res = await fetch(`${baseUrl}/api/products/${id}`, {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch product");
